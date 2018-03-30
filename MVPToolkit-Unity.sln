@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVPToolkit-Unity.Plugins", "MVPToolkit-Unity.Plugins.csproj", "{1E23AAE8-D7B5-E991-A0BF-46AA1527C74C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVPToolkit-Unity", "MVPToolkit-Unity.csproj", "{7D005C22-3107-3C52-63F0-C4EA6D7D0088}"
@@ -42,8 +40,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EB85992A-8346-48E9-8D87-5A4AD35202FC}
 	EndGlobalSection
 EndGlobal

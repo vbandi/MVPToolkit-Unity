@@ -22,7 +22,7 @@ namespace TestPlaygroundTests
         [TestMethod]
         public void ResetShouldCreate4Cubes()
         {
-            MainModel.Instance.Cubes.Count.ShouldEqual(5);
+            MainModel.Instance.Cubes.Count.ShouldEqual(4);
         }
 
         [TestMethod]
