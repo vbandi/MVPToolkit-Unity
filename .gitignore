@@ -33,3 +33,5 @@ TestPlaygroundTests/bin/
 /testableunity_Data
 /TestableUnity.Tests/bin
 /TestableUnity.Tests/obj
+/MVPToolkit-Unity.SampleTests/obj/Debug
+/Packages

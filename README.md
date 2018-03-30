@@ -83,9 +83,9 @@ The sample app has the following features:
 
 ## Execute Unit Tests on the Sample App
 The sample app should have at least the following projects in the solution:
-* TestableUnity
-* TestableUnity.Plugins (contains UniRx)
-* TestPlaygroundTests
+* MVPToolkit-Unity
+* MVPToolkit-Unity.Plugins (contains UniRx)
+* MVPToolkit-Unity.SampleTests (contains the tests for the sample app)
 
 You may have additional projects depending on the platform specified in Unity.
 
