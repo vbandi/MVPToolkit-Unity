@@ -1,27 +1,42 @@
 ﻿using System;
-using System.Linq;
-
+using System.Collections.Generic;
 using UniRx;
+using UnityEngine;
 
 namespace Models
 {
+    [Serializable]
     public class MainModel
     {
-        public readonly ReactiveCollection<CubeModel> Cubes = new ReactiveCollection<CubeModel>();
-        public static readonly MainModel Instance = new MainModel();
-        public readonly ReactiveCommand MarkAllCubesToBeRemovedCommand = new ReactiveCommand();
+        private Dictionary<CubeModel, CompositeDisposable> _disposableSubscriptions = new Dictionary<CubeModel, CompositeDisposable>();
 
-        private MainModel()
+        [SerializeField] private ReactiveCollection<CubeModel> _cubes = new ReactiveCollection<CubeModel>();
+        public ReactiveCollection<CubeModel> Cubes => _cubes;
+
+        [SerializeField] private ReactiveCommand _markAllCubesToBeRemovedCommand = new ReactiveCommand();
+        public ReactiveCommand MarkAllCubesToBeRemovedCommand => _markAllCubesToBeRemovedCommand;
+
+        public int NumberOfCubes = 4;
+        public int NumberOfBouncesBeforeDeletion = 2;
+
+        public MainModel()
         {
-            MarkAllCubesToBeRemovedCommand.Subscribe(HandleMarkAllCubesToBeRemoved);
-            Cubes.ObserveCountChanged(true).Where(count => count < 4).Subscribe(i => CreateCube());
         }
 
-        private void HandleMarkAllCubesToBeRemoved(Unit u)
+        public void Initialize()
         {
-            Cubes.All(c => c.MarkedForRemoval.Value = true);
+            MarkAllCubesToBeRemovedCommand.Subscribe(_ => HandleMarkAllCubesToBeRemovedCommand());
+            Cubes.ObserveCountChanged().Where(count => count < NumberOfCubes).Subscribe(_ => CreateCube());
+            CreateCube();   //create the first cube, that will kick off the rest
         }
 
+        private void HandleMarkAllCubesToBeRemovedCommand()
+        {
+            foreach (var cubeModel in Cubes)
+                cubeModel.MarkedForRemoval.Value = true;
+        }
+
+        [ContextMenu("Reset")]
         public void Reset()
         {
             Cubes.Clear();
@@ -30,14 +45,23 @@ namespace Models
         private void CreateCube()
         {
             var cube = new CubeModel();
+            var compositeDisposableForThisCube = new CompositeDisposable();
+            _disposableSubscriptions[cube] = compositeDisposableForThisCube;
+
+            var subscription = cube.Collisions.Where(coll => coll >= NumberOfBouncesBeforeDeletion).Subscribe(x => RemoveCube(cube))
+                .AddTo(compositeDisposableForThisCube);
+
             Cubes.Add(cube);
-            cube.Collisions.Where(coll => coll >= 2).Subscribe(x => RemoveCube(cube));
         }
 
         private void RemoveCube(CubeModel cube)
         {
             cube.MarkedForRemoval.Value = true;
             Cubes.Remove(cube);
+
+            //clean up subscriptions
+            _disposableSubscriptions[cube].Dispose();
+            _disposableSubscriptions.Remove(cube);
         }
     }
 }

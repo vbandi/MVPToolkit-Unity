@@ -1,23 +1,22 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
 using UniRx;
-
 using UnityEngine;
 
 namespace Models
 {
+    [Serializable]
     public class CubeModel
     {
-        public readonly ReactiveProperty<int> Collisions = new ReactiveProperty<int>(0);
-        public readonly BoolReactiveProperty MarkedForRemoval = new BoolReactiveProperty(false);
+        [SerializeField] private IntReactiveProperty _collisions = new IntReactiveProperty(0);
+        public IntReactiveProperty Collisions => _collisions;
+
+        [SerializeField] private BoolReactiveProperty _markedForRemoval = new BoolReactiveProperty(false);
+        public BoolReactiveProperty MarkedForRemoval => _markedForRemoval;
 
         public void Collide()
         {
             Collisions.Value++;
         }
-
     }
 }
 

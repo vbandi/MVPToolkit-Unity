@@ -1,12 +1,7 @@
 ﻿using System;
-
 using Models;
-
 using MVPToolkit;
-
 using UniRx;
-using UniRx.Triggers;
-
 using UnityEngine;
 
 using Random = UnityEngine.Random;
@@ -22,11 +17,9 @@ public class MainPresenter : SingletonPresenterBase<MainModel>
 
     private void Start()
     {
-        Model = MainModel.Instance;
-        _itemsContainer = new BoundItemsContainer<CubeModel>(Model.Cubes,
-            CubePrefab, CubeHolder);
+        Model.Initialize(); //model fields from the editor are now set
 
-        _itemsContainer.DestroyOnRemove = false;
+        _itemsContainer = new BoundItemsContainer<CubeModel>(CubePrefab, CubeHolder);
 
         _itemsContainer.ObserveAdd().Subscribe(evt =>
                 {
@@ -40,6 +33,7 @@ public class MainPresenter : SingletonPresenterBase<MainModel>
                         Random.Range(0f, 180f));
                 });
 
+        _itemsContainer.DestroyOnRemove = false;
         _itemsContainer.ObserveRemove().Subscribe(evt =>
                 {
                     Destroy(evt.GameObject.GetComponent<Rigidbody>());
@@ -49,12 +43,12 @@ public class MainPresenter : SingletonPresenterBase<MainModel>
         _itemsContainer.ObserveRemove().Delay(TimeSpan.FromSeconds(2))
             .Subscribe(evt => Destroy(evt.GameObject));
 
+        _itemsContainer.Initialize(Model.Cubes);
+
         var clickStream = Observable.EveryUpdate().Where(_ => Input.GetButtonDown("Fire1"));
         clickStream.Buffer(clickStream.Throttle(TimeSpan.FromMilliseconds(250)))
             .Where(xs => xs.Count > 1)
             .Subscribe(_ => Model.MarkAllCubesToBeRemovedCommand.Execute());
-
-        Model.Reset();
     }
 
     private void Update()

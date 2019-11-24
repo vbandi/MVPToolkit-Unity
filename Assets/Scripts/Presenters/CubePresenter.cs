@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using JetBrains.Annotations;
+using Models;
 
 using UniRx;
 using UniRx.Triggers;
@@ -6,17 +7,19 @@ using UniRx.Triggers;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
-public class CubePresenter : MVPToolkit.PresenterBase<Models.CubeModel>
+[UsedImplicitly]
+public class CubePresenter : MVPToolkit.PresenterBase<CubeModel>
 {
     private Material _material;
 
+    [UsedImplicitly]
     private void Start()
     {
         _material = GetComponent<MeshRenderer>().material;
-        Model.MarkedForRemoval.Subscribe(b => _material.color = b ? Color.blue : Color.white);
+        Model.MarkedForRemoval.Subscribe(b => _material.color = b ? Color.blue : Color.white).AddTo(this);
 
         var trigger = this.gameObject.AddComponent<ObservableCollisionTrigger>();
-        trigger.OnCollisionEnterAsObservable().Subscribe(_ => Model.Collide());
+        trigger.OnCollisionEnterAsObservable().Subscribe(_ => Model.Collide()).AddTo(this);
     }
 }
 

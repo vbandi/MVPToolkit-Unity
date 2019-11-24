@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace MVPToolkit
 {
@@ -11,7 +12,7 @@ namespace MVPToolkit
         /// <summary>
         /// The Model this Presenter belongs to
         /// </summary>
-        public T Model;
+        [SerializeField] public T Model;
     }
 }
 

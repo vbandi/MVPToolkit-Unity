@@ -1,0 +1,1097 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute">
+            <summary>
+            Used to specify deployment item (file or directory) for per-test deployment.
+            Can be specified on test class or test method.
+            Can have multiple instances of the attribute to specify more than one item.
+            The item path can be absolute or relative, if relative, it is relative to RunConfig.RelativePathRoot.
+            </summary>
+            <example>
+            [DeploymentItem("file1.xml")]
+            [DeploymentItem("file2.xml", "DataFiles")]
+            [DeploymentItem("bin\Debug")]
+            </example>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute"/> class.
+            </summary>
+            <param name="path">The file or directory to deploy. The path is relative to the build output directory. The item will be copied to the same directory as the deployed test assemblies.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute"/> class
+            </summary>
+            <param name="path">The relative or absolute path to the file or directory to deploy. The path is relative to the build output directory. The item will be copied to the same directory as the deployed test assemblies.</param>
+            <param name="outputDirectory">The path of the directory to which the items are to be copied. It can be either absolute or relative to the deployment directory. All files and directories identified by <paramref name="path"/> will be copied to this directory.</param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.Path">
+            <summary>
+            Gets the path of the source file or folder to be copied.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.OutputDirectory">
+            <summary>
+            Gets the path of the directory to which the item is copied.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.ConfigurationNames">
+            <summary>
+            包含區段、屬性 (property)、屬性 (attribute) 名稱的常值。
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.ConfigurationNames.SectionName">
+            <summary>
+            The configuration section name.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.ConfigurationNames.Beta2SectionName">
+            <summary>
+            The configuration section name for Beta2. Left around for compat.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.ConfigurationNames.DataSourcesSectionName">
+            <summary>
+            Section name for Data source.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.ConfigurationNames.NameAttributeName">
+            <summary>
+            Attribute name for 'Name'
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.ConfigurationNames.ConnectionStringAttributeName">
+            <summary>
+            Attribute name for 'ConnectionString'
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.ConfigurationNames.DataAccessMethodAttributeName">
+            <summary>
+            Attrbiute name for 'DataAccessMethod'
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.ConfigurationNames.DataTableAttributeName">
+            <summary>
+            Attribute name for 'DataTable'
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement">
+            <summary>
+            資料來源元素。
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement.Name">
+            <summary>
+            Gets or sets the name of this configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement.ConnectionString">
+            <summary>
+            Gets or sets the ConnectionStringSettings element in &lt;connectionStrings&gt; section in the .config file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement.DataTableName">
+            <summary>
+            Gets or sets the name of the data table.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement.DataAccessMethod">
+            <summary>
+            Gets or sets the type of data access.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement.Key">
+            <summary>
+            Gets the key name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement.Properties">
+            <summary>
+            取得組態屬性。
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection">
+            <summary>
+            資料來源元素集合。
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection"/> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.Item(System.String)">
+            <summary>
+            傳回具有指定索引鍵的組態元素。
+            </summary>
+            <param name="name">要傳回之元素的索引鍵。</param>
+            <returns>具有指定索引鍵的 System.Configuration.ConfigurationElement; 否則為 null。</returns>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.Item(System.Int32)">
+            <summary>
+            取得位在指定索引位置的組態元素。
+            </summary>
+            <param name="index">要傳回之 System.Configuration.ConfigurationElement 的索引位置。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.Add(Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement)">
+            <summary>
+            將組態元素新增至組態元素集合。
+            </summary>
+            <param name="element">要新增的 System.Configuration.ConfigurationElement。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.Remove(Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement)">
+            <summary>
+            從集合移除 System.Configuration.ConfigurationElement。
+            </summary>
+            <param name="element"><see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement"/>。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.Remove(System.String)">
+            <summary>
+            從集合移除 System.Configuration.ConfigurationElement。
+            </summary>
+            <param name="name">要移除之 System.Configuration.ConfigurationElement 的索引鍵。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.Clear">
+            <summary>
+            從集合移除所有組態元素物件。
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.CreateNewElement">
+            <summary>
+            建立新的 <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement"/>。
+            </summary>
+            <returns>新的 <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement"/>。</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            取得指定組態元素的元素索引鍵。
+            </summary>
+            <param name="element">要為其傳回索引鍵的 System.Configuration.ConfigurationElement。</param>
+            <returns>用作指定 System.Configuration.ConfigurationElement 之索引鍵的 System.Object。</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.BaseAdd(System.Configuration.ConfigurationElement)">
+            <summary>
+            將組態元素新增至組態元素集合。
+            </summary>
+            <param name="element">要新增的 System.Configuration.ConfigurationElement。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElementCollection.BaseAdd(System.Int32,System.Configuration.ConfigurationElement)">
+            <summary>
+            將組態元素新增至組態元素集合。
+            </summary>
+            <param name="index">要新增指定 System.Configuration.ConfigurationElement 的索引位置。</param>
+            <param name="element">要新增的 System.Configuration.ConfigurationElement。</param>
+        </member>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.TestConfiguration">
+            <summary>
+            支援測試的組態設定。
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestConfiguration.ConfigurationSection">
+            <summary>
+            取得測試的組態區段。
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection">
+            <summary>
+            測試的組態區段。
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection.DataSources">
+            <summary>
+            Gets the data sources for this configuration section.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection.Properties">
+            <summary>
+            取得屬性集合。
+            </summary>
+            <returns>
+             <see cref="T:System.Configuration.ConfigurationPropertyCollection"/> (屬於元素的屬性)。
+            </returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject">
+            <summary>
+            This class represents the live NON public INTERNAL object in the system
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.#ctor(System.Object,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject"/> class that contains
+            the already existing object of the private class
+            </summary>
+            <param name="obj"> 作為連絡 Private 成員之起點的物件</param>
+            <param name="memberToAccess">使用 . 的取值字串，指向要以 m_X.m_Y.m_Z 形式擷取的物件</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.#ctor(System.String,System.String,System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject"/> class that wraps the
+            specified type.
+            </summary>
+            <param name="assemblyName">Name of the assembly</param>
+            <param name="typeName">完整名稱</param>
+            <param name="args">要傳遞給建構函式的引數</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.#ctor(System.String,System.String,System.Type[],System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject"/> class that wraps the
+            specified type.
+            </summary>
+            <param name="assemblyName">Name of the assembly</param>
+            <param name="typeName">完整名稱</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表要取得之建構函式的參數數目、順序和類型</param>
+            <param name="args">要傳遞給建構函式的引數</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.#ctor(System.Type,System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject"/> class that wraps the
+            specified type.
+            </summary>
+            <param name="type">要建立的物件類型</param>
+            <param name="args">要傳遞給建構函式的引數</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.#ctor(System.Type,System.Type[],System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject"/> class that wraps the
+            specified type.
+            </summary>
+            <param name="type">要建立的物件類型</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表要取得之建構函式的參數數目、順序和類型</param>
+            <param name="args">要傳遞給建構函式的引數</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject"/> class that wraps
+            the given object.
+            </summary>
+            <param name="obj">要包裝的物件</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.#ctor(System.Object,Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject"/> class that wraps
+            the given object.
+            </summary>
+            <param name="obj">要包裝的物件</param>
+            <param name="type">PrivateType 物件</param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Target">
+            <summary>
+            Gets or sets the target
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.RealType">
+            <summary>
+            Gets the type of underlying object
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetHashCode">
+            <summary>
+            傳回目標物件的雜湊碼
+            </summary>
+            <returns>int，代表目標物件的雜湊碼</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Equals(System.Object)">
+            <summary>
+            等於
+            </summary>
+            <param name="obj">要與之比較的物件</param>
+            <returns>returns true if the objects are equal.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Invoke(System.String,System.Object[])">
+            <summary>
+            叫用指定的方法
+            </summary>
+            <param name="name">Name of the method</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <returns>方法呼叫結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Invoke(System.String,System.Type[],System.Object[])">
+            <summary>
+            叫用指定的方法
+            </summary>
+            <param name="name">Name of the method</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表要取得之方法的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <returns>方法呼叫結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Invoke(System.String,System.Type[],System.Object[],System.Type[])">
+            <summary>
+            叫用指定的方法
+            </summary>
+            <param name="name">Name of the method</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表要取得之方法的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <param name="typeArguments">對應至泛型引數類型的類型陣列。</param>
+            <returns>方法呼叫結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Invoke(System.String,System.Object[],System.Globalization.CultureInfo)">
+            <summary>
+            叫用指定的方法
+            </summary>
+            <param name="name">Name of the method</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <param name="culture">文化特性 (Culture) 資訊</param>
+            <returns>方法呼叫結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Invoke(System.String,System.Type[],System.Object[],System.Globalization.CultureInfo)">
+            <summary>
+            叫用指定的方法
+            </summary>
+            <param name="name">Name of the method</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表要取得之方法的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <param name="culture">文化特性 (Culture) 資訊</param>
+            <returns>方法呼叫結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Invoke(System.String,System.Reflection.BindingFlags,System.Object[])">
+            <summary>
+            叫用指定的方法
+            </summary>
+            <param name="name">Name of the method</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <returns>方法呼叫結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Invoke(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[])">
+            <summary>
+            叫用指定的方法
+            </summary>
+            <param name="name">Name of the method</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表要取得之方法的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <returns>方法呼叫結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Invoke(System.String,System.Reflection.BindingFlags,System.Object[],System.Globalization.CultureInfo)">
+            <summary>
+            叫用指定的方法
+            </summary>
+            <param name="name">Name of the method</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <param name="culture">文化特性 (Culture) 資訊</param>
+            <returns>方法呼叫結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Invoke(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[],System.Globalization.CultureInfo)">
+            <summary>
+            叫用指定的方法
+            </summary>
+            <param name="name">Name of the method</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表要取得之方法的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <param name="culture">文化特性 (Culture) 資訊</param>
+            <returns>方法呼叫結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.Invoke(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[],System.Globalization.CultureInfo,System.Type[])">
+            <summary>
+            叫用指定的方法
+            </summary>
+            <param name="name">方法名稱</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表要取得之方法的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <param name="culture">文化特性 (Culture) 資訊</param>
+            <param name="typeArguments">對應至泛型引數類型的類型陣列。</param>
+            <returns>方法呼叫結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetArrayElement(System.String,System.Int32[])">
+            <summary>
+            Gets the array element using array of subsrcipts for each dimension
+            </summary>
+            <param name="name">Name of the member</param>
+            <param name="indices">陣列索引</param>
+            <returns>An arrya of elements.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.SetArrayElement(System.String,System.Object,System.Int32[])">
+            <summary>
+            Sets the array element using array of subsrcipts for each dimension
+            </summary>
+            <param name="name">Name of the member</param>
+            <param name="value">要設定的值</param>
+            <param name="indices">陣列索引</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetArrayElement(System.String,System.Reflection.BindingFlags,System.Int32[])">
+            <summary>
+            Gets the array element using array of subsrcipts for each dimension
+            </summary>
+            <param name="name">Name of the member</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="indices">陣列索引</param>
+            <returns>An arrya of elements.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.SetArrayElement(System.String,System.Reflection.BindingFlags,System.Object,System.Int32[])">
+            <summary>
+            Sets the array element using array of subsrcipts for each dimension
+            </summary>
+            <param name="name">Name of the member</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="value">要設定的值</param>
+            <param name="indices">陣列索引</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetField(System.String)">
+            <summary>
+            取得欄位
+            </summary>
+            <param name="name">Name of the field</param>
+            <returns>The field.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.SetField(System.String,System.Object)">
+            <summary>
+            設定欄位
+            </summary>
+            <param name="name">Name of the field</param>
+            <param name="value">要設定的值</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetField(System.String,System.Reflection.BindingFlags)">
+            <summary>
+            取得欄位
+            </summary>
+            <param name="name">Name of the field</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <returns>The field.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.SetField(System.String,System.Reflection.BindingFlags,System.Object)">
+            <summary>
+            設定欄位
+            </summary>
+            <param name="name">Name of the field</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="value">要設定的值</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetFieldOrProperty(System.String)">
+            <summary>
+            取得欄位或屬性
+            </summary>
+            <param name="name">欄位或屬性名稱</param>
+            <returns>The field or property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.SetFieldOrProperty(System.String,System.Object)">
+            <summary>
+            設定欄位或屬性
+            </summary>
+            <param name="name">欄位或屬性名稱</param>
+            <param name="value">要設定的值</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetFieldOrProperty(System.String,System.Reflection.BindingFlags)">
+            <summary>
+            取得欄位或屬性
+            </summary>
+            <param name="name">欄位或屬性名稱</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <returns>The field or property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.SetFieldOrProperty(System.String,System.Reflection.BindingFlags,System.Object)">
+            <summary>
+            設定欄位或屬性
+            </summary>
+            <param name="name">欄位或屬性名稱</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="value">要設定的值</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetProperty(System.String,System.Object[])">
+            <summary>
+            取得屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <returns>The property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetProperty(System.String,System.Type[],System.Object[])">
+            <summary>
+            取得屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表索引屬性的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <returns>The property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.SetProperty(System.String,System.Object,System.Object[])">
+            <summary>
+            設定屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="value">要設定的值</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.SetProperty(System.String,System.Type[],System.Object,System.Object[])">
+            <summary>
+            設定屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表索引屬性的參數數目、順序和類型。</param>
+            <param name="value">要設定的值</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetProperty(System.String,System.Reflection.BindingFlags,System.Object[])">
+            <summary>
+            取得屬性
+            </summary>
+            <param name="name">Name of the property</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <returns>The property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetProperty(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[])">
+            <summary>
+            取得屬性
+            </summary>
+            <param name="name">Name of the property</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表索引屬性的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <returns>The property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.SetProperty(System.String,System.Reflection.BindingFlags,System.Object,System.Object[])">
+            <summary>
+            設定屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="value">要設定的值</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.SetProperty(System.String,System.Reflection.BindingFlags,System.Object,System.Type[],System.Object[])">
+            <summary>
+            設定屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="bindingFlags">位元遮罩包含一或多個物件 <see cref="T:System.Reflection.BindingFlags"/>，這些物件指定如何進行搜尋。</param>
+            <param name="value">要設定的值</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表索引屬性的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.ValidateAccessString(System.String)">
+            <summary>
+            驗證存取字串
+            </summary>
+            <param name="access"> 存取字串</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.InvokeHelper(System.String,System.Reflection.BindingFlags,System.Object[],System.Globalization.CultureInfo)">
+            <summary>
+            叫用成員
+            </summary>
+            <param name="name">Name of the member</param>
+            <param name="bindingFlags">其他屬性</param>
+            <param name="args">引動過程的引數</param>
+            <param name="culture">文化特性 (Culture)</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject.GetGenericMethodFromCache(System.String,System.Type[],System.Type[],System.Reflection.BindingFlags,System.Reflection.ParameterModifier[])">
+            <summary>
+            從目前私用類型中擷取最適當的泛型方法簽章。
+            </summary>
+            <param name="methodName">要在其中搜尋簽章快取的方法名稱。</param>
+            <param name="parameterTypes">對應至要在其中進行搜尋之參數類型的類型陣列。</param>
+            <param name="typeArguments">對應至泛型引數類型的類型陣列。</param>
+            <param name="bindingFlags"><see cref="T:System.Reflection.BindingFlags"/> 進一步篩選方法簽章。</param>
+            <param name="modifiers">Modifiers for parameters.</param>
+            <returns>A methodinfo instance.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType">
+            <summary>
+            This class represents a private class for the Private Accessor functionality.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.BindToEveryThing">
+            <summary>
+            繫結至所有項目
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.type">
+            <summary>
+            The wrapped type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType"/> class that contains the private type.
+            </summary>
+            <param name="assemblyName">組件名稱</param>
+            <param name="typeName">下列項目的完整名稱: </param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType"/> class that contains
+            the private type from the type object
+            </summary>
+            <param name="type">要建立的已包裝「類型」。</param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.ReferencedType">
+            <summary>
+            取得參考的類型
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Object[])">
+            <summary>
+            叫用靜態成員
+            </summary>
+            <param name="name">InvokeHelper 的成員名稱</param>
+            <param name="args">引動過程的引數</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Type[],System.Object[])">
+            <summary>
+            叫用靜態成員
+            </summary>
+            <param name="name">InvokeHelper 的成員名稱</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 代表要叫用之方法的參數數目、順序和類型</param>
+            <param name="args">引動過程的引數</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Type[],System.Object[],System.Type[])">
+            <summary>
+            叫用靜態成員
+            </summary>
+            <param name="name">InvokeHelper 的成員名稱</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 代表要叫用之方法的參數數目、順序和類型</param>
+            <param name="args">引動過程的引數</param>
+            <param name="typeArguments">對應至泛型引數類型的類型陣列。</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Object[],System.Globalization.CultureInfo)">
+            <summary>
+            叫用靜態方法
+            </summary>
+            <param name="name">Name of the member</param>
+            <param name="args">引動過程的引數</param>
+            <param name="culture">文化特性 (Culture)</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Type[],System.Object[],System.Globalization.CultureInfo)">
+            <summary>
+            叫用靜態方法
+            </summary>
+            <param name="name">Name of the member</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 代表要叫用之方法的參數數目、順序和類型</param>
+            <param name="args">引動過程的引數</param>
+            <param name="culture">文化特性 (Culture) 資訊</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Reflection.BindingFlags,System.Object[])">
+            <summary>
+            叫用靜態方法
+            </summary>
+            <param name="name">Name of the member</param>
+            <param name="bindingFlags">其他引動過程屬性</param>
+            <param name="args">引動過程的引數</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[])">
+            <summary>
+            叫用靜態方法
+            </summary>
+            <param name="name">Name of the member</param>
+            <param name="bindingFlags">其他引動過程屬性</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 代表要叫用之方法的參數數目、順序和類型</param>
+            <param name="args">引動過程的引數</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Reflection.BindingFlags,System.Object[],System.Globalization.CultureInfo)">
+            <summary>
+            叫用靜態方法
+            </summary>
+            <param name="name">成員名稱</param>
+            <param name="bindingFlags">其他引動過程屬性</param>
+            <param name="args">引動過程的引數</param>
+            <param name="culture">文化特性 (Culture)</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[],System.Globalization.CultureInfo)">
+            <summary>
+            叫用靜態方法
+            </summary>
+            <param name="name">成員名稱</param>
+            <param name="bindingFlags">其他引動過程屬性</param>
+            /// <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 代表要叫用之方法的參數數目、順序和類型</param>
+            <param name="args">引動過程的引數</param>
+            <param name="culture">文化特性 (Culture)</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[],System.Globalization.CultureInfo,System.Type[])">
+            <summary>
+            叫用靜態方法
+            </summary>
+            <param name="name">成員名稱</param>
+            <param name="bindingFlags">其他引動過程屬性</param>
+            /// <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 代表要叫用之方法的參數數目、順序和類型</param>
+            <param name="args">引動過程的引數</param>
+            <param name="culture">文化特性 (Culture)</param>
+            <param name="typeArguments">對應至泛型引數類型的類型陣列。</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticArrayElement(System.String,System.Int32[])">
+            <summary>
+            取得靜態陣列中的元素
+            </summary>
+            <param name="name">Name of the array</param>
+            <param name="indices">
+            32 位元整數的一維陣列，代表指定要取得之元素的位置索引。
+            例如，若要存取 a[10][11]，索引即為 {10,11}
+            </param>
+            <returns>元素 (位於指定的位置)</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticArrayElement(System.String,System.Object,System.Int32[])">
+            <summary>
+            設定靜態陣列的成員
+            </summary>
+            <param name="name">Name of the array</param>
+            <param name="value">要設定的值</param>
+            <param name="indices">
+            32 位元整數的一維陣列，代表指定要設定之元素的位置索引。
+            例如，若要存取 a[10][11]，陣列即為 {10,11}
+            </param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticArrayElement(System.String,System.Reflection.BindingFlags,System.Int32[])">
+            <summary>
+            Gets the element in satatic array
+            </summary>
+            <param name="name">Name of the array</param>
+            <param name="bindingFlags">其他 InvokeHelper 屬性</param>
+            <param name="indices">
+            32 位元整數的一維陣列，代表指定要取得之元素的位置索引。
+            例如，若要存取 a[10][11]，陣列即為 {10,11}
+            </param>
+            <returns>元素 (位於指定的位置)</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticArrayElement(System.String,System.Reflection.BindingFlags,System.Object,System.Int32[])">
+            <summary>
+            設定靜態陣列的成員
+            </summary>
+            <param name="name">Name of the array</param>
+            <param name="bindingFlags">其他 InvokeHelper 屬性</param>
+            <param name="value">要設定的值</param>
+            <param name="indices">
+            32 位元整數的一維陣列，代表指定要設定之元素的位置索引。
+            例如，若要存取 a[10][11]，陣列即為 {10,11}
+            </param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticField(System.String)">
+            <summary>
+            取得靜態欄位
+            </summary>
+            <param name="name">欄位名稱</param>
+            <returns>The static field.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticField(System.String,System.Object)">
+            <summary>
+            設定靜態欄位
+            </summary>
+            <param name="name">欄位名稱</param>
+            <param name="value">引動過程的引數</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticField(System.String,System.Reflection.BindingFlags)">
+            <summary>
+            取得使用所指定 InvokeHelper 屬性的靜態欄位
+            </summary>
+            <param name="name">欄位名稱</param>
+            <param name="bindingFlags">其他引動過程屬性</param>
+            <returns>The static field.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticField(System.String,System.Reflection.BindingFlags,System.Object)">
+            <summary>
+            設定使用繫結屬性的靜態欄位
+            </summary>
+            <param name="name">欄位名稱</param>
+            <param name="bindingFlags">其他 InvokeHelper 屬性</param>
+            <param name="value">引動過程的引數</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticFieldOrProperty(System.String)">
+            <summary>
+            取得靜態欄位或屬性
+            </summary>
+            <param name="name">欄位或屬性名稱</param>
+            <returns>The static field or property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticFieldOrProperty(System.String,System.Object)">
+            <summary>
+            設定靜態欄位或屬性
+            </summary>
+            <param name="name">欄位或屬性名稱</param>
+            <param name="value">要設定為欄位或屬性的值</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticFieldOrProperty(System.String,System.Reflection.BindingFlags)">
+            <summary>
+            取得使用所指定 InvokeHelper 屬性 (attribute) 的靜態欄位或屬性 (property)
+            </summary>
+            <param name="name">欄位或屬性名稱</param>
+            <param name="bindingFlags">其他引動過程屬性</param>
+            <returns>The static field or property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticFieldOrProperty(System.String,System.Reflection.BindingFlags,System.Object)">
+            <summary>
+            設定使用繫結屬性 (attribute) 的靜態欄位或屬性 (property)
+            </summary>
+            <param name="name">欄位或屬性名稱</param>
+            <param name="bindingFlags">其他引動過程屬性</param>
+            <param name="value">要設定為欄位或屬性的值</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticProperty(System.String,System.Object[])">
+            <summary>
+            取得靜態屬性
+            </summary>
+            <param name="name">欄位或屬性名稱</param>
+            <param name="args">引動過程的引數</param>
+            <returns>The static property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticProperty(System.String,System.Object,System.Object[])">
+            <summary>
+            設定靜態屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="value">要設定為欄位或屬性的值</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticProperty(System.String,System.Object,System.Type[],System.Object[])">
+            <summary>
+            設定靜態屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="value">要設定為欄位或屬性的值</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表索引屬性的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticProperty(System.String,System.Reflection.BindingFlags,System.Object[])">
+            <summary>
+            取得靜態屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="bindingFlags">其他引動過程屬性。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <returns>The static property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticProperty(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[])">
+            <summary>
+            取得靜態屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="bindingFlags">其他引動過程屬性。</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表索引屬性的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+            <returns>The static property.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticProperty(System.String,System.Reflection.BindingFlags,System.Object,System.Object[])">
+            <summary>
+            設定靜態屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="bindingFlags">其他引動過程屬性。</param>
+            <param name="value">要設定為欄位或屬性的值</param>
+            <param name="args">索引屬性的選擇性索引值。索引屬性的索引是以零為起始。非索引屬性的這個值應該是 null。 </param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticProperty(System.String,System.Reflection.BindingFlags,System.Object,System.Type[],System.Object[])">
+            <summary>
+            設定靜態屬性
+            </summary>
+            <param name="name">屬性名稱</param>
+            <param name="bindingFlags">其他引動過程屬性。</param>
+            <param name="value">要設定為欄位或屬性的值</param>
+            <param name="parameterTypes">物件陣列，<see cref="T:System.Type"/> 物件陣列，代表索引屬性的參數數目、順序和類型。</param>
+            <param name="args">要傳遞給要叫用之成員的引數。</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeHelperStatic(System.String,System.Reflection.BindingFlags,System.Object[],System.Globalization.CultureInfo)">
+            <summary>
+            叫用靜態方法
+            </summary>
+            <param name="name">成員名稱</param>
+            <param name="bindingFlags">其他引動過程屬性</param>
+            <param name="args">引動過程的引數</param>
+            <param name="culture">文化特性 (Culture)</param>
+            <returns>引動過程結果</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.RuntimeTypeHelper">
+            <summary>
+            提供泛型方法的方法簽章探索。
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.RuntimeTypeHelper.CompareMethodSigAndName(System.Reflection.MethodBase,System.Reflection.MethodBase)">
+            <summary>
+            Compares the method signatures of these two methods.
+            </summary>
+            <param name="m1">Method1</param>
+            <param name="m2">Method2</param>
+            <returns>True if they are similiar.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.RuntimeTypeHelper.GetHierarchyDepth(System.Type)">
+            <summary>
+            Gets the hierarchy depty from the base type of the provided type.
+            </summary>
+            <param name="t">The type.</param>
+            <returns>The depth.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.RuntimeTypeHelper.FindMostDerivedNewSlotMeth(System.Reflection.MethodBase[],System.Int32)">
+            <summary>
+            Finds most dervied type with the provided information.
+            </summary>
+            <param name="match">Candidate matches.</param>
+            <param name="cMatches">Number of matches.</param>
+            <returns>The most derived method.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.RuntimeTypeHelper.SelectMethod(System.Reflection.BindingFlags,System.Reflection.MethodBase[],System.Type[],System.Reflection.ParameterModifier[])">
+            <summary>
+            如果有一組方法符合基底準則，請根據類型陣列
+            來選取方法。如果沒有方法符合準則，則這個方法
+            應該傳回 null。
+            </summary>
+            <param name="bindingAttr">Binding specification.</param>
+            <param name="match">Candidate matches</param>
+            <param name="types">Types</param>
+            <param name="modifiers">Parameter modifiers.</param>
+            <returns>Matching method. Null if none matches.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.RuntimeTypeHelper.FindMostSpecificMethod(System.Reflection.MethodBase,System.Int32[],System.Type,System.Reflection.MethodBase,System.Int32[],System.Type,System.Type[],System.Object[])">
+            <summary>
+            Finds the most specific method in the two methods provided.
+            </summary>
+            <param name="m1">Method 1</param>
+            <param name="paramOrder1">Parameter order for Method 1</param>
+            <param name="paramArrayType1">Paramter array type.</param>
+            <param name="m2">Method 2</param>
+            <param name="paramOrder2">Parameter order for Method 2</param>
+            <param name="paramArrayType2">&gt;Paramter array type.</param>
+            <param name="types">Types to search in.</param>
+            <param name="args">Args.</param>
+            <returns>An int representing the match.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.RuntimeTypeHelper.FindMostSpecific(System.Reflection.ParameterInfo[],System.Int32[],System.Type,System.Reflection.ParameterInfo[],System.Int32[],System.Type,System.Type[],System.Object[])">
+            <summary>
+            Finds the most specific method in the two methods provided.
+            </summary>
+            <param name="p1">Method 1</param>
+            <param name="paramOrder1">Parameter order for Method 1</param>
+            <param name="paramArrayType1">Paramter array type.</param>
+            <param name="p2">Method 2</param>
+            <param name="paramOrder2">Parameter order for Method 2</param>
+            <param name="paramArrayType2">&gt;Paramter array type.</param>
+            <param name="types">Types to search in.</param>
+            <param name="args">Args.</param>
+            <returns>An int representing the match.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.RuntimeTypeHelper.FindMostSpecificType(System.Type,System.Type,System.Type)">
+            <summary>
+            Finds the most specific type in the two provided.
+            </summary>
+            <param name="c1">Type 1</param>
+            <param name="c2">Type 2</param>
+            <param name="t">The defining type</param>
+            <returns>An int representing the match.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext">
+            <summary>
+            用來儲存提供給單元測試的資訊。
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.Properties">
+            <summary>
+            Gets per test properties
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.DataRow">
+            <summary>
+            Gets the current data row when test is used for data driven testing.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.DataConnection">
+            <summary>
+            Gets current data connection row when test is used for data driven testing.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestRunDirectory">
+            <summary>
+            Gets base directory for the test run, under which deployed files and result files are stored.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.DeploymentDirectory">
+            <summary>
+            Gets directory for files deployed for the test run. Typically a subdirectory of <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestRunDirectory"/>。
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.ResultsDirectory">
+            <summary>
+            Gets base directory for results from the test run. Typically a subdirectory of <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestRunDirectory"/>。
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestRunResultsDirectory">
+            <summary>
+            Gets directory for test run result files. Typically a subdirectory of <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.ResultsDirectory"/>。
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestResultsDirectory">
+            <summary>
+            Gets directory for test result files.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestDir">
+            <summary>
+            Gets base directory for the test run, under which deployed files and result files are stored.
+            Same as <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestRunDirectory"/>。請改用該屬性。
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestDeploymentDir">
+            <summary>
+            Gets directory for files deployed for the test run. Typically a subdirectory of <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestRunDirectory"/>.
+            Same as <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.DeploymentDirectory"/>。請改用該屬性。
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestLogsDir">
+            <summary>
+            Gets directory for test run result files. Typically a subdirectory of <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.ResultsDirectory"/>.
+            Same as <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestRunResultsDirectory"/>。請改成將該屬性用於測試回合結果檔案，或
+            <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestResultsDirectory"/> 測試特定結果檔案。
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.FullyQualifiedTestClassName">
+            <summary>
+            Gets the Fully-qualified name of the class containing the test method currently being executed
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestName">
+            <summary>
+            Gets the name of the test method currently being executed
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.CurrentTestOutcome">
+            <summary>
+            取得目前測試結果。
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.WriteLine(System.String)">
+            <summary>
+            用來在測試執行時寫入追蹤訊息
+            </summary>
+            <param name="message">格式化訊息字串</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.WriteLine(System.String,System.Object[])">
+            <summary>
+            用來在測試執行時寫入追蹤訊息
+            </summary>
+            <param name="format">格式字串</param>
+            <param name="args">引數</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.AddResultFile(System.String)">
+            <summary>
+            將檔案名稱新增至 TestResult.ResultFileNames 的清單中
+            </summary>
+            <param name="fileName">
+            檔案名稱。
+            </param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.BeginTimer(System.String)">
+            <summary>
+            開始具有所指定名稱的計時器
+            </summary>
+            <param name="timerName"> Name of the timer.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.EndTimer(System.String)">
+            <summary>
+            結束具有所指定名稱的計時器
+            </summary>
+            <param name="timerName"> Name of the timer.</param>
+        </member>
+    </members>
+</doc>

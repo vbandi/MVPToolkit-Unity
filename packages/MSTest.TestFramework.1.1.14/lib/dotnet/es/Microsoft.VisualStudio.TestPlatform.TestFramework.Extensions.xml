@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute">
+            <summary>
+            Used to specify deployment item (file or directory) for per-test deployment.
+            Can be specified on test class or test method.
+            Can have multiple instances of the attribute to specify more than one item.
+            The item path can be absolute or relative, if relative, it is relative to RunConfig.RelativePathRoot.
+            </summary>
+            <example>
+            [DeploymentItem("file1.xml")]
+            [DeploymentItem("file2.xml", "DataFiles")]
+            [DeploymentItem("bin\Debug")]
+            </example>
+            <remarks>
+            DeploymentItemAttribute is currently not supported in .Net Core. This is just a placehodler for support in the future.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute"/> class.
+            </summary>
+            <param name="path">The file or directory to deploy. The path is relative to the build output directory. The item will be copied to the same directory as the deployed test assemblies.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute"/> class
+            </summary>
+            <param name="path">The relative or absolute path to the file or directory to deploy. The path is relative to the build output directory. The item will be copied to the same directory as the deployed test assemblies.</param>
+            <param name="outputDirectory">The path of the directory to which the items are to be copied. It can be either absolute or relative to the deployment directory. All files and directories identified by <paramref name="path"/> will be copied to this directory.</param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.Path">
+            <summary>
+            Gets the path of the source file or folder to be copied.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.OutputDirectory">
+            <summary>
+            Gets the path of the directory to which the item is copied.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext">
+            <summary>
+            TestContext class. This class should be fully abstract and not contain any
+            members. The adapter will implement the members. Users in the framework should
+            only access this via a well-defined interface.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.Properties">
+            <summary>
+            Obtiene las propiedades de una prueba.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.FullyQualifiedTestClassName">
+            <summary>
+            Obtiene el nombre completo de la clase que contiene el método de prueba que se está ejecutando
+            </summary>
+            <remarks>
+            Esta propiedad puede ser útil en atributos derivados de ExpectedExceptionBaseAttribute.
+            Dichos atributos tienen acceso al contexto de la prueba y proporcionan mensajes que se incluyen
+            en los resultados de las pruebas. Los usuarios pueden beneficiarse de los mensajes que incluyen el nombre de clase
+            completo junto con el nombre del método de prueba que se está ejecutando.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestName">
+            <summary>
+            Obtiene el nombre del método de prueba que se está ejecutando
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.CurrentTestOutcome">
+            <summary>
+            Obtiene el resultado de la prueba actual.
+            </summary>
+        </member>
+    </members>
+</doc>

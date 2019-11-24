@@ -57,17 +57,26 @@ The type of the model is set by the generic parameter of the `BoundItemsContaine
 
 ### BoundItemsContainer Constructor
 ```CSharp
-public BoundItemsContainer(ReactiveCollection<T> collectionToBindTo, GameObject itemPrefab, GameObject itemHolder)
+public BoundItemsContainer(GameObject itemPrefab, GameObject itemHolder)
 ```
-The first step is to instantiate the class, providing the collection to bind to, the prefab to be created for every model added to the collection and the container in the scene hierarchy under which the prefab will be added.
+The first step is to instantiate the class, providing prefab to be created for every model added to the collection and the container in the scene hierarchy under which the prefab will be added.
 
 The `itemPrefab` prefab should have a `PresenterBase` attached to it. `BoundItemsContainer` will take care of setting the `Model` field of the `PresenterBase`.
+
 
 ### DestroyOnRemove
 If this is set to true, `BoundItemsContainer` automatically destroys the corresponding GameObject belonging to the Model removed from the collection.
 
 ### ObserveAdd and ObserveRemove
 Provides means for you to observe when an object has been added or removed to the underlying collection and a prefab has been created or destroyed. This allows you to have additional code ran in these situations, initializing the view and the presenter. 
+
+### BoundItemsContainer.Initialize
+```CSharp
+public Initialize(ReactiveCollection<T> collectionToBindTo)
+```
+
+After you've set the above properties, call `Initialize` to provide the `ReactiveCollection` that the `BoundItemsContainer` will bind to. You can only call `Initialize` once per `BoundItemsContainer` instance. 
+Calling `Initialize` will enumerate through any existing items in the provided collection, and publish to `ObserveAdd` so that you have a chance to change how the initial presenters are created.
 
 # Runninng the Sample App
 To run the sample app, clone this repository, and open it in Unity 2018.1 beta. Press the play button. 
@@ -83,9 +92,9 @@ The sample app has the following features:
 
 ## Execute Unit Tests on the Sample App
 The sample app should have at least the following projects in the solution:
-* MVPToolkit-Unity
-* MVPToolkit-Unity.Plugins (contains UniRx)
-* MVPToolkit-Unity.SampleTests (contains the tests for the sample app)
+* TestableUnity
+* TestableUnity.Plugins (contains UniRx)
+* TestPlaygroundTests
 
 You may have additional projects depending on the platform specified in Unity.
 
