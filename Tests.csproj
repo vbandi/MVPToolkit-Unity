@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{8d8afa7b-0879-d723-3938-42e3413a14a2}</ProjectGuid>
+    <ProjectGuid>{084271b1-3cb1-d199-ad6b-35ed7eeea303}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -248,10 +248,10 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>D:/Work/Projects/TestableUnity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="Shouldly">
- <HintPath>D:/Work/Projects/TestableUnity/Assets/Packages/Shouldly.3.0.2/lib/net451/Shouldly.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Assets/Packages/Shouldly.3.0.2/lib/net451/Shouldly.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -608,25 +608,25 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>D:/Work/Projects/TestableUnity/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.TestRunner">
- <HintPath>D:/Work/Projects/TestableUnity/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/Work/Projects/TestableUnity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Work/Projects/TestableUnity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="MVPToolkitDemo.csproj">
-      <Project>{50a6396a-5d01-6e24-3fea-2dc5444783f7}</Project>
+      <Project>{e6206c18-6d50-fdbc-5b9b-5a8c0b3127d7}</Project>
       <Name>MVPToolkitDemo</Name>
     </ProjectReference>
     <ProjectReference Include="UniRx.csproj">
-      <Project>{6a4db8ee-7fca-f80b-8269-6652bb8ab4a9}</Project>
+      <Project>{844565a1-436c-1163-c1af-ff9b29f22062}</Project>
       <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>

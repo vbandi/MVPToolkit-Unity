@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6a4db8ee-7fca-f80b-8269-6652bb8ab4a9}</ProjectGuid>
+    <ProjectGuid>{844565a1-436c-1163-c1af-ff9b29f22062}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -474,13 +474,13 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="DotNetZip">
- <HintPath>D:/Work/Projects/TestableUnity/Assets/NuGet/Editor/DotNetZip.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Assets/NuGet/Editor/DotNetZip.dll</HintPath>
  </Reference>
  <Reference Include="NuGetForUnity">
- <HintPath>D:/Work/Projects/TestableUnity/Assets/NuGet/Editor/NuGetForUnity.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Assets/NuGet/Editor/NuGetForUnity.dll</HintPath>
  </Reference>
  <Reference Include="Shouldly">
- <HintPath>D:/Work/Projects/TestableUnity/Assets/Packages/Shouldly.3.0.2/lib/net451/Shouldly.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Assets/Packages/Shouldly.3.0.2/lib/net451/Shouldly.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -837,10 +837,10 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/Work/Projects/TestableUnity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Work/Projects/TestableUnity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Work/Projects/MVPToolkitForUnity/Github/MVPToolkit-Unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
