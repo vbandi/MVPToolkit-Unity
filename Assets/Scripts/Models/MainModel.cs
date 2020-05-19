@@ -8,38 +8,66 @@ namespace Models
     [Serializable]
     public class MainModel
     {
-        private Dictionary<CubeModel, CompositeDisposable> _disposableSubscriptions = new Dictionary<CubeModel, CompositeDisposable>();
+        private static MainModel _instance;
 
-        [SerializeField] private ReactiveCollection<CubeModel> _cubes = new ReactiveCollection<CubeModel>();
-        public ReactiveCollection<CubeModel> Cubes => _cubes;
+        /// <summary>
+        /// The singleton Instance of the <see cref="MainModel"/> class. 
+        /// </summary>
+        public static MainModel Instance => 
+            _instance ?? (_instance = new MainModel());
 
-        [SerializeField] private ReactiveCommand _markAllCubesToBeRemovedCommand = new ReactiveCommand();
-        public ReactiveCommand MarkAllCubesToBeRemovedCommand => _markAllCubesToBeRemovedCommand;
+#if UNITY_EDITOR
+        /// <summary>
+        /// Creates a new instance of the <see cref="MainModel"/> class. Only for testing!
+        /// </summary>
+        /// <returns>a new instance</returns>
+        public static MainModel CreateInstanceForTesting()
+        {
+            return new MainModel();
+        }
+#endif        
+        
+        private Dictionary<CubeModel, CompositeDisposable> _disposableSubscriptions =
+            new Dictionary<CubeModel, CompositeDisposable>();
 
+        private ReactiveCollection<CubeModel> _cubes = new ReactiveCollection<CubeModel>();
+        
+        /// <summary>
+        /// The active cubes 
+        /// </summary>
+        public IReadOnlyReactiveCollection<CubeModel> Cubes => _cubes;
+
+        /// <summary>
+        /// The number of cubes that should be on the scene
+        /// </summary>
         public int NumberOfCubes = 4;
+        
+        /// <summary>
+        /// The number of bounces before a cube gets deleted
+        /// </summary>
         public int NumberOfBouncesBeforeDeletion = 2;
 
-        public MainModel()
+        private MainModel()
         {
+            _instance = this;
         }
-
+        
         public void Initialize()
         {
-            MarkAllCubesToBeRemovedCommand.Subscribe(_ => HandleMarkAllCubesToBeRemovedCommand());
             Cubes.ObserveCountChanged().Where(count => count < NumberOfCubes).Subscribe(_ => CreateCube());
-            CreateCube();   //create the first cube, that will kick off the rest
+            CreateCube(); //create the first cube, that will kick off the rest
         }
 
-        private void HandleMarkAllCubesToBeRemovedCommand()
+        public void MarkAllCubesToBeRemoved()
         {
-            foreach (var cubeModel in Cubes)
-                cubeModel.MarkedForRemoval.Value = true;
+            foreach (var cube in _cubes)
+                cube.MarkForRemoval();
         }
+        
 
-        [ContextMenu("Reset")]
         public void Reset()
         {
-            Cubes.Clear();
+            _cubes.Clear();
         }
 
         private void CreateCube()
@@ -48,16 +76,17 @@ namespace Models
             var compositeDisposableForThisCube = new CompositeDisposable();
             _disposableSubscriptions[cube] = compositeDisposableForThisCube;
 
-            var subscription = cube.Collisions.Where(coll => coll >= NumberOfBouncesBeforeDeletion).Subscribe(x => RemoveCube(cube))
+            cube.Collisions.Where(coll => coll >= NumberOfBouncesBeforeDeletion)
+                .Subscribe(x => RemoveCube(cube))
                 .AddTo(compositeDisposableForThisCube);
 
-            Cubes.Add(cube);
+            _cubes.Add(cube);
         }
 
         private void RemoveCube(CubeModel cube)
         {
-            cube.MarkedForRemoval.Value = true;
-            Cubes.Remove(cube);
+            cube.MarkForRemoval();
+            _cubes.Remove(cube);
 
             //clean up subscriptions
             _disposableSubscriptions[cube].Dispose();

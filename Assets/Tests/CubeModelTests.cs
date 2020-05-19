@@ -1,6 +1,7 @@
 ﻿using Shouldly;
 using Models;
 using NUnit.Framework;
+using UniRx;
 
 namespace TestPlaygroundTests
 {
@@ -21,5 +22,16 @@ namespace TestPlaygroundTests
             c.Collide();
             c.Collisions.Value.ShouldBe(1);
         }
+
+        [Test]
+        public void VerifyMarkForRemoval()
+        {
+            var c = new CubeModel();
+            c.MarkedForRemoval.Value.ShouldBeFalse();
+            c.MarkForRemoval();
+            c.MarkedForRemoval.Value.ShouldBeTrue();
+        }
+
+        
     }
 }

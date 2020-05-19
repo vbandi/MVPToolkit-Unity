@@ -8,14 +8,20 @@ namespace Models
     public class CubeModel
     {
         [SerializeField] private IntReactiveProperty _collisions = new IntReactiveProperty(0);
-        public IntReactiveProperty Collisions => _collisions;
+
+        public IReadOnlyReactiveProperty<int> Collisions => _collisions;
 
         [SerializeField] private BoolReactiveProperty _markedForRemoval = new BoolReactiveProperty(false);
-        public BoolReactiveProperty MarkedForRemoval => _markedForRemoval;
+        public IReadOnlyReactiveProperty<bool> MarkedForRemoval => _markedForRemoval;
 
         public void Collide()
         {
-            Collisions.Value++;
+            _collisions.Value++;
+        }
+
+        public void MarkForRemoval()
+        {
+            _markedForRemoval.Value = true;
         }
     }
 }

@@ -14,14 +14,14 @@ namespace TestPlaygroundTests
         [SetUp]
         public void Init()
         {
-            _mainModel = new MainModel();
+            _mainModel = MainModel.CreateInstanceForTesting();
             _mainModel.Initialize();
         }
 
         [Test]
         public void InitShouldCreateRightNumberOfCubes()
         {
-            _mainModel = new MainModel();
+            _mainModel = MainModel.CreateInstanceForTesting();
             _mainModel.NumberOfCubes = 10;
             _mainModel.Initialize();
             _mainModel.Cubes.Count.ShouldBe(10);
@@ -68,7 +68,8 @@ namespace TestPlaygroundTests
         [Test]
         public void MarkAllCubesToBeRemovedCommandShouldSetIsRemovedForAllCubes()
         {
-            _mainModel.MarkAllCubesToBeRemovedCommand.Execute();
+            _mainModel.MarkAllCubesToBeRemoved();
+            
             foreach (var c in _mainModel.Cubes)
                 c.MarkedForRemoval.Value.ShouldBeTrue();
         }
