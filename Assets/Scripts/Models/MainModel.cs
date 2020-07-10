@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Models
 {
+    /// <summary>
+    /// The main (root) model for the app
+    /// </summary>
     [Serializable]
     public class MainModel
     {
@@ -52,19 +55,27 @@ namespace Models
             _instance = this;
         }
         
+        /// <summary>
+        /// Initializes the Model
+        /// </summary>
         public void Initialize()
         {
             Cubes.ObserveCountChanged().Where(count => count < NumberOfCubes).Subscribe(_ => CreateCube());
             CreateCube(); //create the first cube, that will kick off the rest
         }
 
+        /// <summary>
+        /// Calls <see cref="CubeModel.MarkForRemoval"/> for all cubes
+        /// </summary>
         public void MarkAllCubesToBeRemoved()
         {
             foreach (var cube in _cubes)
                 cube.MarkForRemoval();
         }
-        
 
+        /// <summary>
+        /// Resets the app by removing all cubes from <see cref="Cubes"/>
+        /// </summary>
         public void Reset()
         {
             _cubes.Clear();

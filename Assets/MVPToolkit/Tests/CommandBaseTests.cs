@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Shouldly;
 using UniRx;
@@ -53,7 +52,7 @@ namespace MVPToolkit.Tests
         }
 
         [Test]
-        public void VerifySettingCanExecuteSourceLater()
+        public void VerifySetCanExecuteSource()
         {
             var cmd = new MyCommand(null, false);
             var b = new BoolReactiveProperty(true);
