@@ -1,4 +1,4 @@
-﻿using Models;
+﻿﻿using Models;
 using MVPToolkit;
 using UnityEngine.UI;
 using UnityEngine;
@@ -21,7 +21,8 @@ public class InfoPanelPresenter : PresenterBase<InfoPanelModel>
         Model.ActiveCubes.CombineLatest(Model.TotalCubes, (active, total) => (active, total))
             .Subscribe(p => text.text = $"Active Cubes: {p.active}\nTotal Cubes: {p.total}").AddTo(this);
         
-        Model.IsShown.Subscribe(b => GetComponent<Animator>().SetBool("PanelVisible", b)).AddTo(this);
+        var animator = GetComponent<Animator>();
+        Model.IsShown.Subscribe(b => { animator.SetBool("PanelVisible", b); }).AddTo(this);
 
         Model.ShowCommand.BindToButton(ShowButton);
         Model.HideCommand.BindToButton(HideButton);
