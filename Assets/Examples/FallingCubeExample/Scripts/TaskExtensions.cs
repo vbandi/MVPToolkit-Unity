@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using UniRx;
 
 public static class TaskExtensions
 {
@@ -14,7 +13,7 @@ public static class TaskExtensions
         {
             await task;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             // TODO: handle exception
         }
