@@ -4,7 +4,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-public class LightswitchPresenter : PresenterBase<LightswitchModel>
+public class LightswitchPresenter : PresenterBase<BoolReactiveProperty>
 {
     public Transform Switch;
     public Vector3 RotationWhenOn;
@@ -16,10 +16,10 @@ public class LightswitchPresenter : PresenterBase<LightswitchModel>
         _defaultRotation = Switch.localRotation.eulerAngles;
         
         if (Model == null)
-            Model = new LightswitchModel();
+            Model = new BoolReactiveProperty();
 
-        Model.IsOn.Subscribe(HandleIsOnChanged);
-        Switch.OnMouseUpAsButtonAsObservable().Subscribe(_ => Model.Toggle()).AddTo(this);
+        Model.Subscribe(HandleIsOnChanged);
+        Switch.OnMouseUpAsButtonAsObservable().Subscribe(_ => Model.Value = !Model.Value).AddTo(this);
     }
 
     private void HandleIsOnChanged(bool b)

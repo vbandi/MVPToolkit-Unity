@@ -5,16 +5,13 @@ using UnityEngine;
 
 namespace Examples.LightswitchExample.Scripts.Presenters
 {
-    public class LightPresenter : PresenterBase<LightModel>
+    public class LightPresenter : PresenterBase<MainModel>
     {
         public Light Light;
 
         private void Start()
         {
-            if (Model == null)
-                Model = new LightModel(MainModel.Instance);
-
-            Model.IsLightOn.Subscribe(b => Light.enabled = b).AddTo(this);
+            MainModel.Instance.IsLightOn.Subscribe(b => Light.enabled = b).AddTo(this);
         }
     }
 }

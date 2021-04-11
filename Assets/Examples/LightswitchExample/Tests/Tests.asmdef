@@ -6,7 +6,9 @@
         "UniRx",
         "LightSwitchDemo"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
