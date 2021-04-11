@@ -26,11 +26,5 @@ namespace MVPToolkit
         {
             _onExecute();
         }
-
-        public void BindToButton(Button button)
-        {
-            button.onClick.AddListener(Execute);
-            this.CanExecute.Subscribe(b => button.interactable = b);
-        }
     }
 }

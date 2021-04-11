@@ -16,6 +16,13 @@ namespace TestPlaygroundTests
         }
 
         [Test]
+        public void MarkedForRemovalShouldBeFalseAfterConstructor()
+        {
+            var c = new CubeModel();
+            c.MarkedForRemoval.Value.ShouldBeFalse();
+        }
+
+        [Test]
         public void CollisionsShouldIncreaseAfterCollision()
         {
             var c = new CubeModel();

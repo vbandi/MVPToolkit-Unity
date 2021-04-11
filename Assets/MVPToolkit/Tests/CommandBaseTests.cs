@@ -2,6 +2,9 @@ using System;
 using NUnit.Framework;
 using Shouldly;
 using UniRx;
+using UnityEngine;
+using UnityEngine.Events;
+using Object = UnityEngine.Object;
 
 namespace MVPToolkit.Tests
 {
@@ -66,8 +69,25 @@ namespace MVPToolkit.Tests
             b.Value = true;
             cmd.CanExecute.Value.ShouldBeTrue();
         }
+
+        [Test]
+        public void VerifyBind()
+        {
+            var canExecuteSource = new BoolReactiveProperty(true);
+            var cmd = new MyCommand(canExecuteSource, true);
+
+            bool canExecuteMirror = false;
+            var ue = new UnityEvent();
+
+            cmd.Bind(ue, b => canExecuteMirror = b);
+            canExecuteMirror.ShouldBeTrue();
+            ue.Invoke();
+            cmd.ExecuteCalled.ShouldBeTrue();
+
+            canExecuteSource.Value = false;
+            canExecuteMirror.ShouldBeFalse();
+        }
     }
-    
 
     public class MyCommand : CommandBase
     {

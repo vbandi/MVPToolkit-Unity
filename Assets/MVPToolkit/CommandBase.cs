@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace MVPToolkit
@@ -59,5 +61,34 @@ namespace MVPToolkit
         }
 
         protected abstract void ExecuteInternal();
+        
+        /// <summary>
+        /// Binds this command to a Button
+        /// </summary>
+        /// <param name="button">The button to bind the command to</param>
+        public void BindToButton(Button button)
+        {
+            Bind(button.onClick, b => button.interactable = b, button);
+        }
+
+        /// <summary>
+        /// Binds the command to a specified <see cref="UnityEvent"/> and 
+        /// </summary>
+        /// <param name="executeTrigger">The unity event (e.g. onClick) that triggers execution of the command</param>
+        /// <param name="enabledSetter">The enabled / disabled setter for the UI that indicates whether the command is enabled</param>
+        /// <param name="component">If provided, the subscriptions automatically end when this <see cref="GameObject"/> is destroyed</param>
+        public void Bind(UnityEvent executeTrigger, Action<bool> enabledSetter = null, Component component = null)
+        {
+            IDisposable subscription1 = executeTrigger.AsObservable().Subscribe(_ => Execute());
+            
+            IDisposable subscription2 = enabledSetter != null ? 
+                CanExecute.Subscribe(b => enabledSetter(b)) : null; 
+
+            if (component != null)
+            {
+                subscription1.AddTo(component);
+                subscription2?.AddTo(component);
+            }
+        }
     }
 }
