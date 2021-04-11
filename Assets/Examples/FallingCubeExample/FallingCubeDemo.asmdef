@@ -1,8 +1,9 @@
 {
-    "name": "MVPToolkitDemo",
+    "name": "FallingCubeDemo",
     "references": [
         "GUID:560b04d1a97f54a4e82edc0cbbb69285",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:bb87883d4a738bb4e965b72c4c2501b8"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -11,5 +12,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

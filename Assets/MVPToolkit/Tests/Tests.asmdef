@@ -3,8 +3,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "MVPToolkitDemo",
-        "UniRx"
+        "UniRx",
+        "MVPToolkit"
     ],
     "includePlatforms": [
         "Editor"
