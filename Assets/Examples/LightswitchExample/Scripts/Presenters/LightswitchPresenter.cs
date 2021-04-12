@@ -18,7 +18,7 @@ public class LightswitchPresenter : PresenterBase<BoolReactiveProperty>
         if (Model == null)
             Model = new BoolReactiveProperty();
 
-        Model.Subscribe(HandleIsOnChanged);
+        Model.Subscribe(HandleIsOnChanged).AddTo(this);
         Switch.OnMouseUpAsButtonAsObservable().Subscribe(_ => Model.Value = !Model.Value).AddTo(this);
     }
 

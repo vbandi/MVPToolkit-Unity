@@ -231,8 +231,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5cbdf65aed4065a4cd7c8a3201ce89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Model:
+    _lightswitch1:
+      value: 0
+    _lightswitch2:
+      value: 0
   Lightswitch1: {fileID: 1656629527}
   Lightswitch2: {fileID: 192348930}
+  Light: {fileID: 1490644524}
 --- !u!4 &932880356
 Transform:
   m_ObjectHideFlags: 0
@@ -444,6 +450,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6711428deaa4e00bf43b5366f6e10b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Model:
+    _lightswitch1:
+      value: 0
+    _lightswitch2:
+      value: 0
   Light: {fileID: 1490644522}
 --- !u!1 &1647977781
 GameObject:

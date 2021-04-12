@@ -2,6 +2,7 @@
 using MVPToolkit;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Examples.LightswitchExample.Scripts.Presenters
 {
@@ -9,9 +10,9 @@ namespace Examples.LightswitchExample.Scripts.Presenters
     {
         public Light Light;
 
-        private void Start()
+        public void Init(IReadOnlyReactiveProperty<bool> prop)
         {
-            MainModel.Instance.IsLightOn.Subscribe(b => Light.enabled = b).AddTo(this);
+            prop.Subscribe(b => Light.enabled = b).AddTo(this);
         }
     }
 }
