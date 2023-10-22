@@ -10,7 +10,7 @@ namespace MVPToolkit
     /// <summary>
     /// Automatically creates and destroys Views (GameObjects) as models are added to the underlying ReactiveCollection
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of Models this container works with</typeparam>
     public class BoundItemsContainer<T> : IDisposable
     {
         private CompositeDisposable _disposableList = new CompositeDisposable();
@@ -59,7 +59,7 @@ namespace MVPToolkit
         /// <summary>
         /// Initializes with a collection to bind to. Can only be called once.
         /// </summary>
-        public void Initialize(ReactiveCollection<T> collectionToBindTo)
+        public void Initialize(IReadOnlyReactiveCollection<T> collectionToBindTo)
         {
             if (IsCollectionInitialized)
                 throw new InvalidOperationException($"'{nameof(Initialize)}' can only be called once.");
