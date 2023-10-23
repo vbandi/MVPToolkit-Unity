@@ -1,5 +1,4 @@
-﻿using System;
-using LightswitchExample;
+﻿using LightswitchExample;
 using MVPToolkit;
 using UniRx;
 using UnityEngine;
@@ -16,8 +15,8 @@ namespace Examples.LightswitchExample.Scripts.Presenters
         private void Awake()
         {
             Model = MainModel.Instance;
-
             Light.Init(Model.IsLightOn);
+
             Lightswitches = new BoundItemsContainer<BoolReactiveProperty>(SwitchPrefab, SwitchesHolder);
             
             Lightswitches.ObserveAdd().Subscribe(x =>

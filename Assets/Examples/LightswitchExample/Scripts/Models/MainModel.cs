@@ -20,24 +20,6 @@ namespace LightswitchExample
 
         public IReadOnlyReactiveCollection<BoolReactiveProperty> Switches => _switches;
         
-        public void AddLightSwitch()
-        {
-            var lightSwitchModel = new BoolReactiveProperty(false);
-            _switches.Add(lightSwitchModel);
-            lightSwitchModel.Subscribe(_ => UpdateLight());
-        }
-
-        public void RemoveLightSwitch()
-        {
-            var sw = _switches.LastOrDefault();
-            
-            if (sw == null)
-                return;
-
-            sw.Dispose();    
-            _switches.Remove(sw);
-        }
-        
         public readonly BoolReactiveProperty IsLightOn = new();
         
         private MainModel()
@@ -48,6 +30,24 @@ namespace LightswitchExample
         private void UpdateLight()
         {
             IsLightOn.Value = _switches.Select(x => x.Value).Distinct().Count() == 1;
+        }
+        
+        public void AddLightSwitch()
+        {
+            var lightSwitchModel = new BoolReactiveProperty(false);
+            _switches.Add(lightSwitchModel);
+            lightSwitchModel.Subscribe(_ => UpdateLight());
+        }
+
+        public void RemoveLightSwitch()
+        {
+            var sw = _switches.LastOrDefault();
+
+            if (sw != null)
+            {
+                sw.Dispose();
+                _switches.Remove(sw);
+            }
         }
     }
 }

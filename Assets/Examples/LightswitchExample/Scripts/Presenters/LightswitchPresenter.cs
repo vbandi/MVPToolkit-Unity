@@ -10,7 +10,6 @@ public class LightswitchPresenter : PresenterBase<BoolReactiveProperty>
     public Vector3 RotationWhenOn;
     private Vector3 _defaultRotation;
     
-    // Start is called before the first frame update
     void Start()
     {
         _defaultRotation = Switch.localRotation.eulerAngles;
