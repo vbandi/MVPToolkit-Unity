@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 
@@ -13,22 +14,40 @@ namespace LightswitchExample
 #if UNITY_EDITOR
         public static MainModel CreateInstanceForTesting() => new MainModel();
 #endif
-
-        [SerializeField]
-        private BoolReactiveProperty _lightswitch1 = new BoolReactiveProperty();
-
-        [SerializeField]
-        private BoolReactiveProperty _lightswitch2 = new BoolReactiveProperty();
-
-        public BoolReactiveProperty Lightswitch1 => _lightswitch1;
-        public BoolReactiveProperty Lightswitch2 => _lightswitch2;
         
-        public readonly ReadOnlyReactiveProperty<bool> IsLightOn;
+        [SerializeField]
+        private ReactiveCollection<BoolReactiveProperty> _switches = new ();
+
+        public IReadOnlyReactiveCollection<BoolReactiveProperty> Switches => _switches;
         
+        public void AddLightSwitch()
+        {
+            var lightSwitchModel = new BoolReactiveProperty(false);
+            _switches.Add(lightSwitchModel);
+            lightSwitchModel.Subscribe(_ => UpdateLight());
+        }
+
+        public void RemoveLightSwitch()
+        {
+            var sw = _switches.LastOrDefault();
+            
+            if (sw == null)
+                return;
+
+            sw.Dispose();    
+            _switches.Remove(sw);
+        }
+        
+        public readonly BoolReactiveProperty IsLightOn = new();
         
         private MainModel()
         {
-            IsLightOn = _lightswitch1.CombineLatest(_lightswitch2, (l1, l2) => l1 == l2).ToReadOnlyReactiveProperty();
+            _switches.ObserveCountChanged(true).Subscribe(_ => UpdateLight());
+        }
+
+        private void UpdateLight()
+        {
+            IsLightOn.Value = _switches.Select(x => x.Value).Distinct().Count() == 1;
         }
     }
 }
