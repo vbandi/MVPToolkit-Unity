@@ -120,4 +120,4 @@ To use MVP Toolkit for Unity in your own app, you'll need to add UniRX and the c
 # Feedbacks are More Than Welcome!
 Got thoughts, feedback, enhancements to share? Bugs to report? I'd be more than happy to hear from you! One of the main reasons I'm sharing this is to get more eyeballs on this approach, and discuss it with people from different background and experience than mine. So, please download it, and let me know what you think!
 
-Andr·s "vbandi" Velv·rt
+Andr√°s "vbandi" Velv√°rt

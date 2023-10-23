@@ -1,12 +1,10 @@
-﻿using LightswitchExample;
-using MVPToolkit;
+﻿using MVPToolkit;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Examples.LightswitchExample.Scripts.Presenters
 {
-    public class LightPresenter : PresenterBase<MainModel>
+    public class LightPresenter : PresenterBase<BoolReactiveProperty>
     {
         public Light Light;
 
